@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="px-6 py-10 text-white bg-sky-900">
       <div className="flex flex-col sm:flex-row sm:justify-between">
-        <div className="flex items-center gap-2 mb-4 sm:mb-0">
+        <div className="flex items-center gap-2 mb-4 transition-transform duration-200 ease-in-out sm:mb-0 active:scale-90">
           <Link className="flex items-center" href="/">
             <Image src={Logo} alt="logo" height={74}></Image>
           </Link>
