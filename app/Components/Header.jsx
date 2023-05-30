@@ -1,7 +1,9 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../public/Images/weatherLogo.png";
 import Hamburger from "./Menu";
+import { motion } from "framer-motion";
 
 export default function Header() {
   return (
@@ -14,7 +16,15 @@ export default function Header() {
           className="font-bold transition-transform duration-300 ease-in-out sm:text-5xl text-1xl active:scale-75"
           href="/"
         >
-          WeatherApp
+          <motion.h1
+            initial={{ color: "#ffffff" }} // Start with white
+            animate={{
+              color: ["#ffffff", "#f9d71c", "#ff7f50", "#FFE135"],
+            }} // White to yellow to orange to dark blue to lighter yellow
+            transition={{ duration: 10, ease: "linear", loop: Infinity }}
+          >
+            WeatherApp
+          </motion.h1>
         </Link>
         <Hamburger />
       </header>
