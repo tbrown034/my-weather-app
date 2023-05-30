@@ -6,7 +6,7 @@ import { Bars3Icon } from "@heroicons/react/24/solid";
 export default function Header() {
   return (
     <>
-      <header className="flex items-center justify-between px-6 py-3 text-white bg-sky-600">
+      <header className="flex items-center justify-between px-6 py-3 text-white bg-sky-900">
         <div className="w-1/12">
           <Image src={Logo} alt="logo" />
         </div>

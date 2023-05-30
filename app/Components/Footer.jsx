@@ -4,7 +4,7 @@ import Logo from "../../public/Images/weatherLogo.png";
 export default function Footer() {
   return (
     <>
-      <footer className="px-6 py-10 text-white bg-sky-600">
+      <footer className="px-6 py-10 text-white bg-sky-900">
         <div className="flex justify-between gap-8 ">
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center">
