@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <>
-      <section className="flex flex-col items-center justify-center min-h-screen py-20 bg-sky-400 text-slate-200">
+      <section className="flex flex-col items-center justify-center min-h-screen px-6 py-20 bg-sky-400 text-slate-200">
         <h1 className="py-4 text-6xl">About</h1>
         <div className="space-y-4 text-lg text-slate-800">
           <p>My WeatherApp is a project created by Trevor Brown. </p>

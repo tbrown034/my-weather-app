@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../public/Images/weatherLogo.png";
-import { Bars3Icon } from "@heroicons/react/24/solid";
+import Hamburger from "./Menu";
 
 export default function Header() {
   return (
@@ -10,12 +10,10 @@ export default function Header() {
         <div className="w-1/12">
           <Image src={Logo} alt="logo" />
         </div>
-        <Link className="text-5xl font-bold " href="/">
+        <Link className="font-bold sm:text-5xl text-1xl " href="/">
           WeatherApp
         </Link>
-        <div className="w-1/12 ">
-          <Bars3Icon />
-        </div>
+        <Hamburger />
       </header>
     </>
   );
