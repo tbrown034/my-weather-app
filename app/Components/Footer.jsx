@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="flex flex-wrap items-center gap-4 text-sm sm:justify-center">
           <Link href="/">Home</Link>
           <Link href="/current">Current Weather</Link>
-          <Link href="/forecast">Tomorrow's Forecast</Link>
+          <Link href="/forecast">Tomorrow&apos;s Forecast</Link>
           <Link href="/about">About</Link>
         </div>
       </div>

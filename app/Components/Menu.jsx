@@ -22,7 +22,7 @@ export default function Hamburger() {
               href="/forecast"
               className="block px-2 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
             >
-              Tomorrow's Weather
+              Tomorrow&apos;s Weather
             </Link>
             <Link
               href="/timer"
