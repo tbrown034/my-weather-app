@@ -7,12 +7,6 @@ export default function Home() {
   return (
     <>
       <Current />
-
-      <Forecast />
-
-      <Timer />
-
-      <About />
     </>
   );
 }
