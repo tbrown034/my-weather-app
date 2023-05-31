@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { GET } from "../api/weather";
+import GET_Current from "../api/current";
 
 function degToCardinal(deg) {
   const directions = [
@@ -35,7 +35,7 @@ export default function Current() {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await GET();
+        const response = await GET_Current();
         const data = JSON.parse(response.body);
         const dt = data.dt;
         const date = new Date(dt * 1000);
