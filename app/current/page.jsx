@@ -47,11 +47,11 @@ export default function Current() {
 
   return (
     <section className="flex flex-col items-center justify-center min-h-screen p-6 scroll bg-sky-800 text-slate-100">
-      <h1 className="text-6xl text-center">The Current Weather</h1>
+      <h1 className="text-6xl text-center">OKC's Current Weather</h1>
       {weatherData && (
         <div className="flex flex-col gap-20 pt-10 text-2xl">
           <p>
-            The current temperature in OKC is:{" "}
+            The current temperature is:{" "}
             <span className="px-2 font-bold underline text-7xl underline-offset-8">
               {weatherData.main.temp}°F
             </span>
