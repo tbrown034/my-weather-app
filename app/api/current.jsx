@@ -1,9 +1,10 @@
-export default async function GET_Current() {
+export default async function GET_Current(zipCode) {
   const api_key = process.env.NEXT_PUBLIC_WEATHERAPP_API;
   const baseURL = "https://api.weatherapi.com/v1";
-  const city = "Oklahoma City";
 
-  const res = await fetch(`${baseURL}/current.json?key=${api_key}&q=${city}`);
+  const res = await fetch(
+    `${baseURL}/current.json?key=${api_key}&q=${zipCode}`
+  );
 
   // Recommendation: handle errors
   if (!res.ok) {
