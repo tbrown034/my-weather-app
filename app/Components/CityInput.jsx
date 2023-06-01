@@ -21,7 +21,7 @@ export default function CityInput(props) {
             htmlFor="zipCode"
             className="block mb-2 text-xl font-bold text-black"
           >
-            Enter your zip code:
+            Enter your zip code
           </label>
           <input
             className="w-full p-2 transition-colors bg-white border-2 border-gray-200 rounded-md focus:border-blue-500"
