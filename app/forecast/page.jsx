@@ -3,31 +3,6 @@
 import { useEffect, useState } from "react";
 import GET_Forecast from "../api/forecast";
 
-function degToCardinal(deg) {
-  const directions = [
-    "North",
-    "North-Northeast",
-    "Northeast",
-    "East-Northeast",
-    "East",
-    "East-Southeast",
-    "Southeast",
-    "South-Southeast",
-    "South",
-    "South-Southwest",
-    "Southwest",
-    "West-Southwest",
-    "West",
-    "West-Northwest",
-    "Northwest",
-    "North-Northwest",
-    "North",
-  ];
-
-  const index = Math.round((deg % 360) / 22.5);
-  return directions[index];
-}
-
 export default function Forecast() {
   const [forecastData, setForecastData] = useState(null);
   const [updateTime, setUpdateTime] = useState(null);
@@ -37,7 +12,8 @@ export default function Forecast() {
       try {
         const response = await GET_Forecast();
         const data = JSON.parse(response.body);
-        const dt = data.list[0].dt;
+        console.log("forecast data", data);
+        const dt = data.current.last_updated_epoch;
         const date = new Date(dt * 1000);
         const localDateStr = date.toLocaleString();
 
@@ -52,54 +28,52 @@ export default function Forecast() {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-800 text-slate-100">
-      <h1 className="text-6xl text-center pb-14">
-        OKC&apos;s Weather Forecast
-      </h1>
+    <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-800 text-slate-50">
+      <h1 className="text-6xl text-center pb-14">Tomorrow&apos;s Weather</h1>
       {forecastData && (
         <div className="flex flex-col gap-4 text-xl">
           <div>
             <p>
-              Tomorrow's forecast for{" "}
+              The weather tomorrow in{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.city.name}
+                {forecastData.location.name}
               </span>{" "}
-              is{" "}
+              will be{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.list[0].weather[0].description}
+                {forecastData.current.condition.text}
               </span>
               .
             </p>
           </div>
           <div>
             <p>
-              The temperature is expected to be:{" "}
+              The temperature will be{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.list[0].main.temp}°F
+                {forecastData.current.temp_f}°F
               </span>{" "}
-              but it will feel like:{" "}
+              but it actually will feel like{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.list[0].main.feels_like}°F
+                {forecastData.current.feelslike_f}°F
               </span>
               .
             </p>
           </div>
           <div>
             <p>
-              The wind speed is expected to be:{" "}
+              The wind speed will be:{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.list[0].wind.speed} mph
+                {forecastData.current.wind_mph} mph
               </span>{" "}
               coming from the{" "}
               <span className="font-bold text-yellow-400">
-                {degToCardinal(forecastData.list[0].wind.deg)}
+                {forecastData.current.wind_dir}
               </span>
               .
             </p>
           </div>
           <div>
             <p>
-              Forecast data last updated:{" "}
+              This forecast was last last updated at{" "}
               <span className="font-bold text-yellow-400">{updateTime}</span>.
             </p>
           </div>
