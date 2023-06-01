@@ -1,18 +1,17 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import GET_Forecast from "../api/forecast";
 
-export default function Forecast() {
+export default function Forecast({ zipCode }) {
   const [forecastData, setForecastData] = useState(null);
   const [updateTime, setUpdateTime] = useState(null);
 
   useEffect(() => {
     const fetchForecastData = async () => {
       try {
-        const response = await GET_Forecast();
+        const response = await GET_Forecast(zipCode);
         const data = JSON.parse(response.body);
-        console.log("forecast data", data);
+        console.log("forecast data yu", data);
         const dt = data.current.last_updated_epoch;
         const date = new Date(dt * 1000);
         const localDateStr = date.toLocaleString();
@@ -25,7 +24,7 @@ export default function Forecast() {
     };
 
     fetchForecastData();
-  }, []);
+  }, [zipCode]);
 
   return (
     <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-700 text-slate-100">
@@ -36,7 +35,7 @@ export default function Forecast() {
             <p>
               The weather tomorrow in{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.location.name}
+                {forecastData.location.name}, {forecastData.location.region}
               </span>{" "}
               will be{" "}
               <span className="font-bold text-yellow-400">
@@ -47,28 +46,27 @@ export default function Forecast() {
           </div>
           <div>
             <p>
-              The temperature will be{" "}
+              The average temperature will be{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.current.temp_f}°F
+                {forecastData.forecast.forecastday[1].day.avgtemp_f}°F
               </span>{" "}
-              but it actually will feel like{" "}
+              with a high of{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.current.feelslike_f}°F
+                {forecastData.forecast.forecastday[1].day.maxtemp_f}°F
+              </span>{" "}
+              and a low of{" "}
+              <span className="font-bold text-yellow-400">
+                {forecastData.forecast.forecastday[1].day.mintemp_f}°F
               </span>
               .
             </p>
           </div>
           <div>
             <p>
-              The wind speed will be:{" "}
+              The max wind speed will be:{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.current.wind_mph} mph
-              </span>{" "}
-              coming from the{" "}
-              <span className="font-bold text-yellow-400">
-                {forecastData.current.wind_dir}
+                {forecastData.forecast.forecastday[1].day.maxwind_mph} mph
               </span>
-              .
             </p>
           </div>
           <div>
