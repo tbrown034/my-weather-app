@@ -2,14 +2,14 @@
 import { useEffect, useState } from "react";
 import GET_Current from "../api/current";
 
-export default function Current({ zipCode }) {
+export default function Current() {
   const [weatherData, setWeatherData] = useState(null);
   const [updateTime, setUpdateTime] = useState(null); // New state for update time
 
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await GET_Current(zipCode);
+        const response = await GET_Current();
         const data = JSON.parse(response.body);
         console.log("data", data);
         const dt = data.current.last_updated_epoch;
@@ -24,7 +24,7 @@ export default function Current({ zipCode }) {
     };
 
     fetchWeatherData();
-  }, [zipCode]);
+  }, []);
 
   return (
     <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-800 text-slate-50">
