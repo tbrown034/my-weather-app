@@ -35,7 +35,7 @@ export default function Current({ zipCode }) {
             <p>
               The weather right now in{" "}
               <span className="font-bold text-yellow-400">
-                {weatherData.location.name}
+                {weatherData.location.name}, {weatherData.location.region}
               </span>{" "}
               is{" "}
               <span className="font-bold text-yellow-400">

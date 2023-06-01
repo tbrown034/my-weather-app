@@ -1,11 +1,10 @@
-export default async function GET_Forecast() {
+export default async function GET_Forecast(zipCode) {
   const api_key = process.env.NEXT_PUBLIC_WEATHERAPP_API;
   const baseURL = "https://api.weatherapi.com/v1";
-  const city = "Oklahoma City";
-  const days = 1;
+  const days = 2;
 
   const res = await fetch(
-    `${baseURL}/forecast.json?key=${api_key}&q=${city}&days=${days}`
+    `${baseURL}/forecast.json?key=${api_key}&q=${zipCode}&days=${days}`
   );
 
   // Recommendation: handle errors
