@@ -46,7 +46,7 @@ export default function Current() {
           </div>
           <div>
             <p>
-              The current temperature is:{" "}
+              The current temperature is{" "}
               <span className="font-bold text-yellow-400">
                 {weatherData.current.temp_f}°F
               </span>{" "}

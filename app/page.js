@@ -8,6 +8,8 @@ export default function Home() {
     <>
       <Current />
       <Forecast />
+      <Timer />
+      <About />
     </>
   );
 }

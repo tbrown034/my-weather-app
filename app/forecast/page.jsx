@@ -28,7 +28,7 @@ export default function Forecast() {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-800 text-slate-50">
+    <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-700 text-slate-100">
       <h1 className="text-6xl text-center pb-14">Tomorrow&apos;s Weather</h1>
       {forecastData && (
         <div className="flex flex-col gap-4 text-xl">
