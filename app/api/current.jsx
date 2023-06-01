@@ -1,12 +1,9 @@
 export default async function GET_Current() {
-  const lat = 35.4676; // Latitude for OKC
-  const lon = -97.5164; // Longitude for OKC
-
   const api_key = process.env.NEXT_PUBLIC_WEATHER_API;
+  const baseURL = "http://api.weatherapi.com/v1";
+  const city = "Oklahoma City";
 
-  const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=imperial`
-  );
+  const res = await fetch(`${baseURL}/current.json?key=${api_key}&q=${city}`);
 
   // Recommendation: handle errors
   if (!res.ok) {

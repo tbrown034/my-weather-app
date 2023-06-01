@@ -1,32 +1,6 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import GET_Current from "../api/current";
-
-function degToCardinal(deg) {
-  const directions = [
-    "North",
-    "North-Northeast",
-    "Northeast",
-    "East-Northeast",
-    "East",
-    "East-Southeast",
-    "Southeast",
-    "South-Southeast",
-    "South",
-    "South-Southwest",
-    "Southwest",
-    "West-Southwest",
-    "West",
-    "West-Northwest",
-    "Northwest",
-    "North-Northwest",
-    "North",
-  ];
-
-  const index = Math.round((deg % 360) / 22.5);
-  return directions[index];
-}
 
 export default function Current() {
   const [weatherData, setWeatherData] = useState(null);
@@ -37,7 +11,8 @@ export default function Current() {
       try {
         const response = await GET_Current();
         const data = JSON.parse(response.body);
-        const dt = data.dt;
+        console.log("data", data);
+        const dt = data.current.last_updated_epoch;
         const date = new Date(dt * 1000);
         const localDateStr = date.toLocaleString();
 
@@ -45,7 +20,6 @@ export default function Current() {
         setWeatherData(data);
       } catch (error) {
         console.log("Failed to fetch weather data", error);
-        åå;
       }
     };
 
@@ -53,19 +27,19 @@ export default function Current() {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-800 text-slate-100">
-      <h1 className="text-6xl text-center pb-14">OKC&apos;s Current Weather</h1>
+    <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-800 text-slate-50">
+      <h1 className="text-6xl text-center pb-14">Current Weather</h1>
       {weatherData && (
         <div className="flex flex-col gap-4 text-xl">
           <div>
             <p>
               The weather right now in{" "}
               <span className="font-bold text-yellow-400">
-                {weatherData.name}
+                {weatherData.location.name}
               </span>{" "}
               is{" "}
               <span className="font-bold text-yellow-400">
-                {weatherData.weather[0].description}
+                {weatherData.current.condition.text}
               </span>
               .
             </p>
@@ -74,11 +48,11 @@ export default function Current() {
             <p>
               The current temperature is:{" "}
               <span className="font-bold text-yellow-400">
-                {weatherData.main.temp}°F
+                {weatherData.current.temp_f}°F
               </span>{" "}
               but it actually feels like:{" "}
               <span className="font-bold text-yellow-400">
-                {weatherData.main.feels_like}°F
+                {weatherData.current.feelslike_f}°F
               </span>
               .
             </p>
@@ -87,11 +61,11 @@ export default function Current() {
             <p>
               The wind speed is:{" "}
               <span className="font-bold text-yellow-400">
-                {weatherData.wind.speed} mph
+                {weatherData.current.wind_mph} mph
               </span>{" "}
               coming from the{" "}
               <span className="font-bold text-yellow-400">
-                {degToCardinal(weatherData.wind.deg)}
+                {weatherData.current.wind_dir}
               </span>
               .
             </p>
