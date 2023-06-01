@@ -1,6 +1,6 @@
 export default async function GET_Astro() {
   const api_key = process.env.NEXT_PUBLIC_WEATHER_API;
-  const baseURL = "http://api.weatherapi.com/v1";
+  const baseURL = "https://api.weatherapi.com/v1";
   const city = "Oklahoma City";
 
   const res = await fetch(`${baseURL}/astronomy.json?key=${api_key}&q=${city}`);

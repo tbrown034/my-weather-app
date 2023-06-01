@@ -1,6 +1,6 @@
 export default async function GET_Forecast() {
   const api_key = process.env.NEXT_PUBLIC_WEATHER_API;
-  const baseURL = "http://api.weatherapi.com/v1";
+  const baseURL = "https://api.weatherapi.com/v1";
   const city = "Oklahoma City";
   const days = 1;
 
