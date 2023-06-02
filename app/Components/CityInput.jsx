@@ -1,12 +1,9 @@
-"use client";
-import { useState } from "react";
-
 export default function CityInput(props) {
-  const [zipCode, setZipCode] = useState("");
+  const { onSubmit, zipCode, setZipCode, onReset } = props;
 
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevents page refresh
-    props.onSubmit(zipCode); // Calls the parent component's function with the input data
+    onSubmit(zipCode); // Calls the parent component's function with the input data
   };
 
   const handleChange = (event) => {
@@ -36,6 +33,13 @@ export default function CityInput(props) {
           className="w-full px-4 py-2 font-semibold text-white transition-colors bg-blue-500 rounded-md hover:bg-blue-700"
         >
           Get Weather
+        </button>
+        <button
+          type="button"
+          onClick={onReset}
+          className="w-full px-4 py-2 font-semibold text-white transition-colors bg-red-500 rounded-md hover:bg-red-700"
+        >
+          Reset
         </button>
       </form>
     </div>

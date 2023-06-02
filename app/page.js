@@ -11,6 +11,11 @@ export default function Home() {
   const [zipCode, setZipCode] = useState("");
   const [apiDataFetched, setApiDataFetched] = useState(false);
 
+  const resetData = () => {
+    setZipCode("");
+    setApiDataFetched(false);
+  };
+
   const handleZipCodeSubmit = async (zipCode) => {
     setZipCode(zipCode);
     try {
@@ -28,7 +33,12 @@ export default function Home() {
 
   return (
     <>
-      <CityInput onSubmit={handleZipCodeSubmit} />
+      <CityInput
+        onSubmit={handleZipCodeSubmit}
+        setZipCode={setZipCode}
+        onReset={resetData}
+        zipCode={zipCode}
+      />
       {apiDataFetched && (
         <>
           <Current zipCode={zipCode} />

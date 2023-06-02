@@ -4,7 +4,6 @@ import GET_Forecast from "../api/forecast";
 
 export default function Timer({ zipCode }) {
   const [astroData, setAstroData] = useState(null);
-
   useEffect(() => {
     const fetchAstroData = async () => {
       try {
@@ -31,8 +30,8 @@ export default function Timer({ zipCode }) {
               The sun will rise at{" "}
               <span className="font-bold text-yellow-400">
                 {astroData.forecast.forecastday[1].astro.sunrise}
-              </span>
-              .
+              </span>{" "}
+              in {astroData.location.name}.
             </p>
           </div>
           <div>
@@ -41,7 +40,10 @@ export default function Timer({ zipCode }) {
               <span className="font-bold text-yellow-400">
                 {astroData.forecast.forecastday[1].astro.sunset}
               </span>
-              .
+              <span className="font-bold text-yellow-400">
+                {astroData.forecast.forecastday[1].astro.sunrise}
+              </span>{" "}
+              in {astroData.location.name}.
             </p>
           </div>
         </div>
