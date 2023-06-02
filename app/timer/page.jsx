@@ -1,25 +1,25 @@
 "use client";
 import { useEffect, useState } from "react";
-import GET_Astro from "../api/timer";
+import GET_Forecast from "../api/forecast";
 
-export default function Timer() {
+export default function Timer({ zipCode }) {
   const [astroData, setAstroData] = useState(null);
 
   useEffect(() => {
     const fetchAstroData = async () => {
       try {
-        const response = await GET_Astro();
+        const response = await GET_Forecast(zipCode);
         const data = JSON.parse(response.body);
         console.log("data astro", data);
 
         setAstroData(data);
       } catch (error) {
-        console.log("Failed to fetch astro", error);
+        console.log("Failed to fetch astro here", error);
       }
     };
 
     fetchAstroData();
-  }, []);
+  }, [zipCode]);
 
   return (
     <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-600 text-slate-200">
@@ -30,7 +30,7 @@ export default function Timer() {
             <p>
               The sun will rise at{" "}
               <span className="font-bold text-yellow-400">
-                {astroData.astronomy.astro.sunrise}
+                {astroData.forecast.forecastday[1].astro.sunrise}
               </span>
               .
             </p>
@@ -39,7 +39,7 @@ export default function Timer() {
             <p>
               The sun will set at{" "}
               <span className="font-bold text-yellow-400">
-                {astroData.astronomy.astro.sunset}
+                {astroData.forecast.forecastday[1].astro.sunset}
               </span>
               .
             </p>
