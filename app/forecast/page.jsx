@@ -39,7 +39,7 @@ export default function Forecast({ zipCode }) {
               </span>{" "}
               will be{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.current.condition.text}
+                {forecastData.forecast.forecastday[1].day.condition.text}
               </span>
               .
             </p>
