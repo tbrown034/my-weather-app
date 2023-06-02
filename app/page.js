@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Current from "./current/page";
 import Forecast from "./forecast/page";
 import About from "./about/page";
@@ -10,11 +10,18 @@ import CityInput from "./Components/CityInput";
 export default function Home() {
   const [zipCode, setZipCode] = useState("");
   const [apiDataFetched, setApiDataFetched] = useState(false);
+  const currentRef = useRef(null);
 
   const resetData = () => {
     setZipCode("");
     setApiDataFetched(false);
   };
+
+  useEffect(() => {
+    if (apiDataFetched && currentRef.current) {
+      currentRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [apiDataFetched]);
 
   const handleZipCodeSubmit = async (zipCode) => {
     setZipCode(zipCode);
@@ -41,7 +48,9 @@ export default function Home() {
       />
       {apiDataFetched && (
         <>
-          <Current zipCode={zipCode} />
+          <div ref={currentRef}>
+            <Current zipCode={zipCode} />
+          </div>
           <Forecast zipCode={zipCode} />
           <Timer zipCode={zipCode} />
           <About />

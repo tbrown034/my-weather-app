@@ -48,7 +48,7 @@ export default function Forecast({ zipCode }) {
             <p>
               The average temperature will be{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.forecast.forecastday[0].day.avgtemp_f}°F
+                {forecastData.forecast.forecastday[1].day.avgtemp_f}°F
               </span>{" "}
               with a high of{" "}
               <span className="font-bold text-yellow-400">
