@@ -81,7 +81,7 @@ export default function Current({ zipCode, onScrollToNext }) {
               className="w-1/2 px-4 py-2 font-semibold text-white transition-colors bg-blue-500 rounded-md hover:bg-blue-700"
               onClick={onScrollToNext}
             >
-              See Tomorrow's Forecast
+              See Tomorrow&apos;s Forecast
             </button>
           </div>
         </div>

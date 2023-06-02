@@ -39,9 +39,6 @@ export default function Timer({ zipCode }) {
               The sun will set at{" "}
               <span className="font-bold text-yellow-400">
                 {astroData.forecast.forecastday[1].astro.sunset}
-              </span>
-              <span className="font-bold text-yellow-400">
-                {astroData.forecast.forecastday[1].astro.sunrise}
               </span>{" "}
               in {astroData.location.name}.
             </p>
