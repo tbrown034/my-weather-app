@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import GET_Forecast from "../api/forecast";
 
-export default function Forecast({ zipCode }) {
+export default function Forecast({ zipCode, onScrollToNext }) {
   const [forecastData, setForecastData] = useState(null);
   const [updateTime, setUpdateTime] = useState(null);
 
@@ -74,6 +74,14 @@ export default function Forecast({ zipCode }) {
               This forecast was last last updated at{" "}
               <span className="font-bold text-yellow-400">{updateTime}</span>.
             </p>
+          </div>
+          <div className="flex justify-center py-8">
+            <button
+              className="w-1/2 px-4 py-2 font-semibold text-white transition-colors bg-blue-500 rounded-md hover:bg-blue-700"
+              onClick={onScrollToNext}
+            >
+              Get Sunset and Sunrise Times
+            </button>
           </div>
         </div>
       )}

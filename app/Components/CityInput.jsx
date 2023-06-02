@@ -11,7 +11,7 @@ export default function CityInput(props) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-40 mx-auto bg-yellow-400 rounded-md shadow-md ">
+    <div className="flex flex-col items-center justify-center min-h-screen py-40 mx-auto bg-yellow-400 rounded-md shadow-md ">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label

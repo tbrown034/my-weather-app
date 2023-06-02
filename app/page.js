@@ -12,6 +12,7 @@ export default function Home() {
   const [apiDataFetched, setApiDataFetched] = useState(false);
   const currentRef = useRef(null);
   const forecastRef = useRef(null);
+  const timerRef = useRef(null);
 
   const resetData = () => {
     setZipCode("");
@@ -26,6 +27,10 @@ export default function Home() {
 
   const scrollToForecast = () => {
     forecastRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToTimer = () => {
+    timerRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleZipCodeSubmit = async (zipCode) => {
@@ -57,9 +62,11 @@ export default function Home() {
             <Current zipCode={zipCode} onScrollToNext={scrollToForecast} />
           </div>
           <div ref={forecastRef}>
-            <Forecast zipCode={zipCode} />
+            <Forecast zipCode={zipCode} onScrollToNext={scrollToTimer} />
           </div>{" "}
-          <Timer zipCode={zipCode} />
+          <div ref={timerRef}>
+            <Timer zipCode={zipCode} />
+          </div>
           <About />
         </>
       )}
