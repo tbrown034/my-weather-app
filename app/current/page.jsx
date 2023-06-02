@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import GET_Current from "../api/current";
 
-export default function Current({ zipCode }) {
+export default function Current({ zipCode, onScrollToNext }) {
   const [weatherData, setWeatherData] = useState(null);
   const [updateTime, setUpdateTime] = useState(null); // New state for update time
 
@@ -75,6 +75,14 @@ export default function Current({ zipCode }) {
               Weather data last updated:{" "}
               <span className="font-bold text-yellow-400">{updateTime}</span>.
             </p>
+          </div>
+          <div className="flex justify-center py-8">
+            <button
+              className="w-1/2 px-4 py-2 font-semibold text-white transition-colors bg-blue-500 rounded-md hover:bg-blue-700"
+              onClick={onScrollToNext}
+            >
+              See Tomorrow's Forecast
+            </button>
           </div>
         </div>
       )}
