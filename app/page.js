@@ -14,6 +14,7 @@ export default function Home() {
   const currentRef = useRef(null);
   const forecastRef = useRef(null);
   const timerRef = useRef(null);
+  const futureRef = useRef(null);
 
   const resetData = () => {
     setZipCode("");
@@ -32,6 +33,10 @@ export default function Home() {
 
   const scrollToTimer = () => {
     timerRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrolltoFuture = () => {
+    futureRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleZipCodeSubmit = async (zipCode) => {
@@ -63,12 +68,14 @@ export default function Home() {
             <Current zipCode={zipCode} onScrollToNext={scrollToForecast} />
           </div>
           <div ref={forecastRef}>
-            <Forecast zipCode={zipCode} onScrollToNext={scrollToTimer} />
+            <Forecast zipCode={zipCode} onScrollToNext={scrolltoFuture} />
           </div>{" "}
+          <div ref={futureRef}>
+            <Future zipCode={zipCode} onScrollToNext={scrollToTimer} />
+          </div>
           <div ref={timerRef}>
             <Timer zipCode={zipCode} />
           </div>
-          <Future zipCode={zipCode} />
           <About />
         </>
       )}
