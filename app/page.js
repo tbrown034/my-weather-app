@@ -4,6 +4,7 @@ import Current from "./current/page";
 import Forecast from "./forecast/page";
 import About from "./about/page";
 import Timer from "./timer/page";
+import Future from "./future/page";
 
 import CityInput from "./Components/CityInput";
 
@@ -67,6 +68,7 @@ export default function Home() {
           <div ref={timerRef}>
             <Timer zipCode={zipCode} />
           </div>
+          <Future zipCode={zipCode} />
           <About />
         </>
       )}
