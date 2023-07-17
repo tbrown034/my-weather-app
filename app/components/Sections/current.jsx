@@ -27,7 +27,7 @@ export default function Current({ zipCode, onScrollToNext }) {
   }, [zipCode]);
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-800 text-slate-50">
+    <section className="flex flex-col items-center justify-center min-h-screen px-6 ">
       <h1 className="text-6xl text-center pb-14">Current Weather</h1>
       {weatherData && (
         <div className="flex flex-col gap-4 text-xl">

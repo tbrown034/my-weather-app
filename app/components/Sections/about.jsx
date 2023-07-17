@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <>
-      <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-500 text-slate-300">
+      <section className="flex flex-col items-center justify-center min-h-screen px-60">
         <h1 className="text-6xl text-center pb-14">About</h1>
         <div className="flex flex-col gap-4 text-xl">
           <div>

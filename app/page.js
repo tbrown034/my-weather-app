@@ -1,15 +1,15 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import Current from "./components/Sections/current.jsx";
-import Forecast from "./components/Sections/forecast.jsx";
-import About from "./components/Sections/about.jsx";
-import Timer from "./components/Sections/timer.jsx";
-import Future from "./components/Sections/future.jsx";
-import Header from "./components/UI/header.jsx";
+import Current from "./components/sections/Current.jsx";
+import Forecast from "./components/sections/Forecast.jsx";
+import About from "./components/sections/About.jsx";
+import Timer from "./components/sections/Timer.jsx";
+import Future from "./components/sections/Future.jsx";
+import Header from "./components/UI/Header.jsx";
+import Footer from "./components/UI/Footer.jsx";
+import Home from "./components/sections/Home.jsx";
 
-import CityInput from "./components/Sections/home";
-
-export default function Home() {
+export default function page() {
   const [zipCode, setZipCode] = useState("");
   const [apiDataFetched, setApiDataFetched] = useState(false);
   const currentRef = useRef(null);
@@ -66,7 +66,7 @@ export default function Home() {
       }}
     >
       <Header />
-      <CityInput
+      <Home
         onSubmit={handleZipCodeSubmit}
         setZipCode={setZipCode}
         onReset={resetData}
@@ -90,6 +90,7 @@ export default function Home() {
           <About />
         </>
       )}
+      <Footer />
     </div>
   );
 }

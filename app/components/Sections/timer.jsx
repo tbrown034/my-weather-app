@@ -91,7 +91,7 @@ export default function Timer({ zipCode }) {
   }, [astroData]);
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-6 text-white bg-gradient-to-r from-blue-600 to-purple-900">
+    <section className="flex flex-col items-center justify-center min-h-screen px-6">
       <h1 className="text-6xl text-center pb-14">Sunrise and Sunset</h1>
       {astroData ? (
         <div className="flex flex-col gap-16 text-xl">

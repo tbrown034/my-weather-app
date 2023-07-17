@@ -1,5 +1,7 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 
 function SetViewOnClick({ city }) {
@@ -24,7 +26,7 @@ function SetViewOnClick({ city }) {
   return null;
 }
 
-export default function CityInput(props) {
+export default function Home(props) {
   const { onSubmit, zipCode, setZipCode, onReset } = props;
   const [city, setCity] = useState("");
 

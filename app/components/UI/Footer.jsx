@@ -3,7 +3,7 @@ import Image from "next/image";
 import Logo from "../../../public/Images/weatherLogo.png";
 export default function Footer() {
   return (
-    <footer className="px-6 py-10 bg-teal-400">
+    <footer className="px-6 py-10 ">
       <div className="flex flex-col sm:flex-row sm:justify-between">
         <div className="flex items-center gap-2 mb-4 transition-transform duration-200 ease-in-out sm:mb-0 active:scale-90">
           <Link className="flex items-center" href="/">

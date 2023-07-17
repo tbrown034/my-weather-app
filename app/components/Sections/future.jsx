@@ -30,7 +30,7 @@ export default function Forecast({ zipCode, onScrollToNext }) {
   ];
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-600 text-slate-200">
+    <section className="flex flex-col items-center justify-center min-h-screen px-6">
       <h1 className="text-6xl text-center pb-14">10-Day Forecast</h1>
       <div className="flex flex-col gap-2">
         {forecastData &&
