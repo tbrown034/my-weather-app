@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import GET_FullForecast from "../api/future";
+import GET_FullForecast from "../../utilities/future";
 export default function Forecast({ zipCode, onScrollToNext }) {
   const [forecastData, setForecastData] = useState(null);
 

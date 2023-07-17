@@ -1,13 +1,13 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import Current from "./current/page";
-import Forecast from "./forecast/page";
-import About from "./about/page";
-import Timer from "./timer/page";
-import Future from "./future/page";
-import Header from "./Components/Header";
+import Current from "./components/Sections/current.jsx";
+import Forecast from "./components/Sections/forecast.jsx";
+import About from "./components/Sections/about.jsx";
+import Timer from "./components/Sections/timer.jsx";
+import Future from "./components/Sections/future.jsx";
+import Header from "./components/UI/header.jsx";
 
-import CityInput from "./Components/CityInput";
+import CityInput from "./components/Sections/home";
 
 export default function Home() {
   const [zipCode, setZipCode] = useState("");

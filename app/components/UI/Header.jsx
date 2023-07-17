@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../../public/Images/weatherLogo.png";
 import Hamburger from "./Menu";
 import { motion } from "framer-motion";
+import Logo from "../../../public/Images/weatherLogo.png";
 
 export default function Header() {
   return (

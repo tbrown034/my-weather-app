@@ -1,77 +1,78 @@
 "use client";
 import { useEffect, useState } from "react";
-import GET_Forecast from "../api/forecast";
+import GET_Current from "../../utilities/current";
 
-export default function Forecast({ zipCode, onScrollToNext }) {
-  const [forecastData, setForecastData] = useState(null);
-  const [updateTime, setUpdateTime] = useState(null);
+export default function Current({ zipCode, onScrollToNext }) {
+  const [weatherData, setWeatherData] = useState(null);
+  const [updateTime, setUpdateTime] = useState(null); // New state for update time
 
   useEffect(() => {
-    const fetchForecastData = async () => {
+    const fetchWeatherData = async () => {
       try {
-        const response = await GET_Forecast(zipCode);
+        const response = await GET_Current(zipCode);
         const data = JSON.parse(response.body);
-        console.log("forecast data yu", data);
+        "data", data;
         const dt = data.current.last_updated_epoch;
         const date = new Date(dt * 1000);
         const localDateStr = date.toLocaleString();
 
         setUpdateTime(localDateStr);
-        setForecastData(data);
+        setWeatherData(data);
       } catch (error) {
-        console.log("Failed to fetch forecast data", error);
+        console.log("Failed to fetch weather data", error);
       }
     };
 
-    fetchForecastData();
+    fetchWeatherData();
   }, [zipCode]);
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-700 text-slate-100">
-      <h1 className="text-6xl text-center pb-14">Tomorrow&apos;s Weather</h1>
-      {forecastData && (
+    <section className="flex flex-col items-center justify-center min-h-screen px-6 bg-sky-800 text-slate-50">
+      <h1 className="text-6xl text-center pb-14">Current Weather</h1>
+      {weatherData && (
         <div className="flex flex-col gap-4 text-xl">
           <div>
             <p>
-              The weather tomorrow in{" "}
+              The weather right now in{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.location.name}, {forecastData.location.region}
+                {weatherData.location.name}, {weatherData.location.region}
               </span>{" "}
-              will be{" "}
+              is{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.forecast.forecastday[1].day.condition.text}
+                {weatherData.current.condition.text}
               </span>
               .
             </p>
           </div>
           <div>
             <p>
-              The average temperature will be{" "}
+              The current temperature is{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.forecast.forecastday[1].day.avgtemp_f}°F
+                {weatherData.current.temp_f}°F
               </span>{" "}
-              with a high of{" "}
+              but it actually feels like:{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.forecast.forecastday[1].day.maxtemp_f}°F
-              </span>{" "}
-              and a low of{" "}
-              <span className="font-bold text-yellow-400">
-                {forecastData.forecast.forecastday[1].day.mintemp_f}°F
+                {weatherData.current.feelslike_f}°F
               </span>
               .
             </p>
           </div>
           <div>
             <p>
-              The max wind speed will be:{" "}
+              The wind speed is:{" "}
               <span className="font-bold text-yellow-400">
-                {forecastData.forecast.forecastday[1].day.maxwind_mph} mph
+                {weatherData.current.wind_mph} mph
+              </span>{" "}
+              coming from the{" "}
+              <span className="font-bold text-yellow-400">
+                {weatherData.current.wind_dir}
               </span>
+              .
             </p>
           </div>
           <div>
             <p>
-              This forecast was last last updated at{" "}
+              Weather data last updated:{" "}
               <span className="font-bold text-yellow-400">{updateTime}</span>.
             </p>
           </div>
@@ -80,7 +81,7 @@ export default function Forecast({ zipCode, onScrollToNext }) {
               className="w-1/2 px-4 py-2 font-semibold text-white transition-colors bg-blue-500 rounded-md hover:bg-blue-700"
               onClick={onScrollToNext}
             >
-              Get Extended Forecast
+              See Tomorrow&apos;s Forecast
             </button>
           </div>
         </div>

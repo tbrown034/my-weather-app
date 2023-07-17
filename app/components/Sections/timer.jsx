@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import GET_Forecast from "../api/forecast";
+import GET_Forecast from "../../utilities/forecast";
 
 function getFutureDate(timeStr) {
   const [hours, minutes, period] = timeStr.split(/[:\s]/);

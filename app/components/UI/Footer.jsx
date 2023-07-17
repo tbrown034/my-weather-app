@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../../public/Images/weatherLogo.png";
-
+import Logo from "../../../public/Images/weatherLogo.png";
 export default function Footer() {
   return (
     <footer className="px-6 py-10 bg-teal-400">
