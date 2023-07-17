@@ -1,34 +1,39 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Globe from "react-globe.gl";
-import GET_Current from "../../utilities/Current";
+import GET_Current from "@/app/utilities/current";
 
 export default function Home() {
   const [input, setInput] = useState("");
-  const [coord, setCoord] = useState([]);
-  const [error, setError] = useState(null);
+  const [coord, setCoord] = useState(null);
+  const globe = useRef(null);
+
+  const handleFetchWeather = async (location) => {
+    console.log(`Fetching location data for ${location}`);
+    try {
+      const data = await GET_Current(location);
+      const parsedData = JSON.parse(data.body);
+      if (parsedData.location) {
+        setCoord([parsedData.location.lon, parsedData.location.lat]);
+        console.log(`Location found: ${parsedData.location.name}`);
+      } else {
+        console.error(`No location found for ${location}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (input) {
-        try {
-          const data = await GET_Current(input);
-          const parsedData = JSON.parse(data.body);
-          if (parsedData.location) {
-            setCoord([parsedData.location.lon, parsedData.location.lat]);
-          } else {
-            setError(`No location found for ${input}`);
-            console.error(`No location found for ${input}`);
-          }
-        } catch (error) {
-          setError(error.message);
-          console.error("Error:", error);
-        }
-      }
-    };
-    fetchData();
-  }, [input]);
+    if (coord && globe.current) {
+      console.log(`Zooming into coordinates: ${coord}`);
+      globe.current.pointOfView(
+        { lat: coord[1], lng: coord[0], altitude: 2 },
+        3000
+      ); // Zoom into the coordinates with a 3 second animation
+    }
+  }, [coord]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -36,6 +41,7 @@ export default function Home() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    handleFetchWeather(input);
   };
 
   return (
@@ -45,8 +51,6 @@ export default function Home() {
         <h2 className="text-lg font-semibold text-white">
           Subhead subhead subhead subhead
         </h2>
-
-        {error && <p className="text-red-600">{error}</p>}
 
         <form
           onSubmit={handleSubmit}
@@ -76,25 +80,31 @@ export default function Home() {
             Find
           </button>
         </form>
-        {coord.length === 2 && (
-          <Globe
-            width={800} // specify the width and height as per your needs
-            height={600}
-            pointsData={[
-              {
-                lat: coord[1],
-                lng: coord[0],
-                color: "red",
-                altitude: 0.1,
-                radius: 0.01,
-              },
-            ]}
-            pointAltitude="altitude"
-            pointColor="color"
-            pointRadius="radius"
-            globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-          />
-        )}
+        <Globe
+          ref={globe}
+          width={800} // specify the width and height as per your needs
+          height={600}
+          globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+          pointsData={
+            coord
+              ? [
+                  {
+                    lat: coord[1],
+                    lng: coord[0],
+                    color: "red",
+                    altitude: 0.1,
+                    radius: 0.01,
+                  },
+                ]
+              : []
+          }
+          pointAltitude="altitude"
+          pointColor="color"
+          pointRadius="radius"
+          animateIn
+          rotationSpeed={0.02} // Slowly spin the globe
+          onGlobeReady={() => console.log("Globe is ready")}
+        />
       </div>
     </>
   );
