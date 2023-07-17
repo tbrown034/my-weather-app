@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <main className="scroll-snap-y-mandatory">{children}</main>
+        <main className="scroll-snap-y-mandatory ">{children}</main>
         <Footer />
       </body>
     </html>
