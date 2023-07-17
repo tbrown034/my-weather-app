@@ -5,6 +5,7 @@ import Forecast from "./forecast/page";
 import About from "./about/page";
 import Timer from "./timer/page";
 import Future from "./future/page";
+import Header from "./Components/Header";
 
 import CityInput from "./Components/CityInput";
 
@@ -55,13 +56,23 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div
+      className="min-h-screen bg-center bg-cover"
+      style={{
+        backgroundImage: "url('https://source.unsplash.com/Omo-sEH6bCA')",
+        backgroundSize: "cover", // ensures the background covers the whole div
+        backgroundPosition: "center", // centers the image
+        backgroundRepeat: "no-repeat", // prevents the image from repeating
+      }}
+    >
+      <Header />
       <CityInput
         onSubmit={handleZipCodeSubmit}
         setZipCode={setZipCode}
         onReset={resetData}
         zipCode={zipCode}
       />
+
       {apiDataFetched && (
         <>
           <div ref={currentRef}>
@@ -79,6 +90,6 @@ export default function Home() {
           <About />
         </>
       )}
-    </>
+    </div>
   );
 }
