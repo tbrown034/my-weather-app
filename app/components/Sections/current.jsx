@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import GET_Current from "../../utilities/current";
+import GET_Current from "../../utilities/Current";
 
 export default function Current({ zipCode, onScrollToNext }) {
   const [weatherData, setWeatherData] = useState(null);
